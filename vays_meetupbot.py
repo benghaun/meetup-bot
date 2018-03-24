@@ -693,6 +693,7 @@ dispatcher.add_handler(CommandHandler('del_event', del_event))
 # Handles both single and multidate events
 ##
 def attendance(bot,update):
+    print "test output"
     event = get_event()
     multidate_event = get_multidate_event()
     dates = multidate_event.dates
