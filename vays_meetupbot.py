@@ -553,8 +553,9 @@ def multidate_event_response(bot,update):
     if query.data == 'OK': #all dates selected, send message to group
         atLeastOneDate = False
         for date in multidate_event.dict:
-            if name in multidate_event.dict[date]:
-                atLeastOneDate = True
+        	if (date != 'None') and (date != 'Unresponded'):
+	            if name in multidate_event.dict[date]:
+	                atLeastOneDate = True
         if not atLeastOneDate: #add name to nor list if no dates were selected
             multidate_event.dict["None"] += name + '\n'
 
