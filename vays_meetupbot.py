@@ -93,7 +93,7 @@ class Multidate_event(object):
     def attendance(self):
         message = self.info + '\n'
         for i in range(len(self.dates)):
-            message += self.dates[i]+'({}):\n'.format(len(self.dates[i]))
+            message += self.dates[i]+' ({}):\n'.format(len(self.dict[self.dates[i]].split('\n')))
             message += self.dict[self.dates[i]] + '\n'
         return message
 
