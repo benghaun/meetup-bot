@@ -21,7 +21,7 @@ class MultidateEvent():
         if not full:
             # only display dates with top 3 number of people
             dates = sorted(list(self.dates.items()),
-                           key=lambda item: item[1], reverse=True)[:3]
+                           key=lambda item: len(item[1]), reverse=True)[:3]
         else:
             dates = self.dates.items()
         for date, going in dates:
