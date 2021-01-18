@@ -17,5 +17,8 @@ def attendance_handler(update: Update, context: CallbackContext):
         context.bot.sendMessage(chat_id=update.message.chat_id,
                                 text=event.attendance())
     else:
+        full = False
+        if context.args[-1] == 'full':
+            full = True
         context.bot.sendMessage(
-            chat_id=update.message.chat_id, text=multidate_event.attendance())
+            chat_id=update.message.chat_id, text=multidate_event.attendance(full))

@@ -16,9 +16,15 @@ class MultidateEvent():
         self.dates = {row[2]: row[3] for row in rows}
     # returns a string representing the attendance for every date
 
-    def attendance(self):
+    def attendance(self, full=False):
         message = self.info + '\n\n'
-        for date, going in self.dates.items():
+        if not full:
+            # only display dates with top 3 number of people
+            dates = sorted(list(self.dates.items()),
+                           key=lambda item: item[1], reverse=True)[:3]
+        else:
+            dates = self.dates.items()
+        for date, going in dates:
             message += '{}:\n'.format(date) + '\n'.join(going) + \
                 '\n' + ('\n' if len(going) > 0 else '')
         return message
