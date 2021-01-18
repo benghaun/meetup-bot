@@ -9,6 +9,9 @@ from telegram.ext import CallbackContext
 def error_handler(handler_func: Callable) -> Callable:
     def inner(update: Update, context: CallbackContext):
         try:
+            name = update.message.from_user.first_name if update.message is not None else update.callback_query.from_user.first_name
+            print('running {} now for user {}'.format(
+                handler_func.__name__, name))
             handler_func(update, context)
         except Exception as e:
             print("Error occurred when running handler function {}, error message: {}".format(
