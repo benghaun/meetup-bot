@@ -41,7 +41,7 @@ def create_multidate_event(dates: List[str], info: str) -> None:
 
 def get_multidate_event() -> MultidateEvent:
     cur = conn.cursor()
-    cur.execute('SELECT id, info, date, going FROM MULTIDATE_EVENTS')
+    cur.execute('SELECT id, info, date, going FROM MULTIDATE_EVENTS ORDER BY ID')
     rows = cur.fetchall()
     if rows == []:
         return None
