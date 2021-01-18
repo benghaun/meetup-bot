@@ -1,1 +1,1 @@
-web: python -u vays_meetupbot.py 
+web: python -u main.py 
