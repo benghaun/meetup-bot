@@ -40,14 +40,8 @@ def change_handler(update: Update, context: CallbackContext):
         return
 
     # multidate event
-    # First remove user's name from all dates
-    for date in multidate_event.dates:
-        if name in multidate_event.dates[date]:
-            multidate_event.dates[date].remove(name)
-    multidate_event.save()
-
-    keyboard_data = {date: 'date:{}'.format(
-        date) for date in multidate_event.dates.keys()}
+    keyboard_data = {date if name not in going else date + ' ✅': 'date:{}'.format(date
+                                                                                  ) for date, going in multidate_event.dates.items()}
     keyboard_data['OK'] = 'date:OK'
     keyboard_markup = generate_reply_markup(
         3, keyboard_data)

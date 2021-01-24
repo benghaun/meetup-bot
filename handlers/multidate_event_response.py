@@ -26,12 +26,15 @@ def mutlidate_event_response_handler(update: Update, context: CallbackContext):
     selected_date = query.data.split(':')[1]
 
     if (selected_date != 'OK'):
-        multidate_event.dates[selected_date].append(name)
+        if name in multidate_event.dates[selected_date]:
+            multidate_event.dates[selected_date].remove(name)
+        else:
+            multidate_event.dates[selected_date].append(name)
         multidate_event.save()
 
         # remove selected date from keyboard
-        new_keyboard_data = {date: 'date:{}'.format(
-            date) for date, going in multidate_event.dates.items() if name not in going}
+        new_keyboard_data = {date if name not in going else date + ' ✅': 'date:{}'.format(date
+                                                                                          ) for date, going in multidate_event.dates.items()}
         new_keyboard_data['OK'] = 'date:OK'
         new_reply_markup = generate_reply_markup(3, new_keyboard_data)
         context.bot.editMessageReplyMarkup(
