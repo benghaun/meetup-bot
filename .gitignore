@@ -1,3 +1,4 @@
 meetupbot_data.py
 **/__pycache__
+**/.mypy_cache
 venv
