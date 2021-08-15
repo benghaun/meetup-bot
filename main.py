@@ -11,7 +11,8 @@ from handlers import (start_handler,
                       attendance_handler,
                       del_event_handler,
                       create_multidate_event_handler,
-                      mutlidate_event_response_handler)
+                      mutlidate_event_response_handler,
+                      chat_id_handler)
 
 env = os.environ.get('ENVIRONMENT', 'local')
 if (env == 'local'):
@@ -39,6 +40,7 @@ dispatcher.add_handler(CommandHandler('attendance', attendance_handler))
 dispatcher.add_handler(CommandHandler('del_event', del_event_handler))
 dispatcher.add_handler(CommandHandler(
     'create_multidate_event', create_multidate_event_handler))
+dispatcher.add_handler(CommandHandler('chat_id', chat_id_handler))
 
 dispatcher.add_handler(CallbackQueryHandler(
     single_event_response_handler, pattern="^single_event:"))

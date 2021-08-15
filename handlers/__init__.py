@@ -8,3 +8,4 @@ from .attendance import attendance_handler
 from .del_event import del_event_handler
 from .create_multidate_event import create_multidate_event_handler
 from .multidate_event_response import mutlidate_event_response_handler
+from .chat_id import chat_id_handler
